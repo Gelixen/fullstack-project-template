@@ -3,12 +3,12 @@ import ClientsList from "./components/ClientsList";
 import PostsList from "./components/PostsList";
 
 function App() {
-    return (
+  return (
       <>
         <PostsList/>
         <ClientsList/>
       </>
-    )
+  )
 }
 
 export default App;
