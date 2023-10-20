@@ -1,17 +1,46 @@
 import classes from './NewPost.module.css';
+import {useState} from "react";
 
-function NewPost(props) {
+function NewPost({onCancel, onAddPost}) {
+  const [enteredBody, setEnteredBody] = useState('');
+  const [enteredAuthor, setEnteredAuthor] = useState('');
+
+  function bodyChangeHandler(event) {
+    setEnteredBody(event.target.value);
+  }
+
+  function authorChangeHandler(event) {
+    setEnteredAuthor(event.target.value);
+  }
+
+  function submitHandler(event) {
+    event.preventDefault(); // disable server-side submit
+
+    const postData = {
+      body: enteredBody,
+      author: enteredAuthor
+    };
+
+    onAddPost(postData);
+    onCancel();
+  }
+
   return (
-      <form className={classes.form}>
+      <form className={classes.form} onSubmit={submitHandler}>
         <p>
           <label htmlFor="body">Text</label>
-          <textarea id="body" required rows={3} onChange={props.onBodyChange}/>
+          <textarea id="body" required rows={3} onChange={bodyChangeHandler}/>
         </p>
         <p></p>
         <p>
           <label htmlFor="name">Your name</label>
           <input type="text" id="name" required
-                 onChange={props.onAuthorChange}/>
+                 onChange={authorChangeHandler}/>
+        </p>
+        <p className={classes.actions}>
+          {/*type "button" to prevent default submit on all buttons within a form*/}
+          <button type="button" onClick={onCancel}>Cancel</button>
+          <button type="submit">Submit</button>
         </p>
       </form>
   )
