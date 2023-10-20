@@ -10,7 +10,6 @@ export default function ClientsList() {
     (async () => {
       const response = await fetch('/clients');
       const body = await response.json();
-      console.log(body)
       setClients(body);
     })()
   }, [])
