@@ -3,7 +3,7 @@ import styles from './ClientsList.module.css';
 import {useEffect, useState} from "react";
 import logo from "../logo.svg";
 
-export function ClientsList() {
+export default function ClientsList() {
     const [clients, setClients] = useState([])
 
     useEffect(() => {
