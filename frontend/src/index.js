@@ -1,14 +1,39 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
-import App from './App';
+import Posts, {loader as postsLoader} from './routes/Posts';
+import {RouterProvider, createBrowserRouter} from 'react-router-dom'
 import reportWebVitals from './reportWebVitals';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import ClientsList from "./components/ClientsList";
+import NewPost, {action as newPostAction} from "./routes/NewPost";
+import RootLayout from "./routes/RootLayout";
+import PostDetails, {loader as postDetailsLoader} from "./routes/PostDetails";
 
+const router = createBrowserRouter([
+  {
+    path: '/posts', element: <RootLayout/>, children: [
+      {
+        path: '/posts',
+        element: <Posts/>,
+        loader: postsLoader,
+        children: [
+          {path: '/posts/create', element: <NewPost/>, action: newPostAction},
+          {
+            path: '/posts/:postId',
+            element: <PostDetails/>,
+            loader: postDetailsLoader
+          }
+        ]
+      }
+    ]
+  },
+  {path: '/clients', element: <ClientsList/>}
+]);
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
     <React.StrictMode>
-      <App/>
+      <RouterProvider router={router}/>
     </React.StrictMode>
 );
 
