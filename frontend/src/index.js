@@ -5,7 +5,7 @@ import Posts, {loader as postsLoader} from './routes/Posts';
 import {RouterProvider, createBrowserRouter} from 'react-router-dom'
 import reportWebVitals from './reportWebVitals';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import ClientsList from "./components/ClientsList";
+import ClientsList from "./components/clients/ClientsList";
 import NewPost, {action as newPostAction} from "./routes/NewPost";
 import RootLayout from "./routes/RootLayout";
 import PostDetails, {loader as postDetailsLoader} from "./routes/PostDetails";

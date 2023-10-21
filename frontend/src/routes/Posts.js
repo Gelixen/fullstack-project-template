@@ -1,5 +1,5 @@
 import './Posts.css';
-import PostsList from "../components/PostsList";
+import PostsList from "../components/posts/PostsList";
 import {Outlet} from "react-router-dom";
 
 function Posts() {
